@@ -8,7 +8,7 @@ const WeatherForecast = ({ data }) => {
    const forecastDays =  weekDays.slice(dayinAWeek, weekDays.length).concat(weekDays.slice(0 , dayinAWeek));
     return (
         <>
-            <label className="title">Daily</label>
+            <label className="title">Daily Forecasts</label>
             {/* Accordian is a box which is used for hiding and showing the details when clicked on that */}
             <Accordion allowZeroExpanded>
                 {/* Here {data.list.splice(0, 7)} is used for showing the forecast for 7 days  */}

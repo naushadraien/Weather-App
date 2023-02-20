@@ -1,10 +1,11 @@
 .title {
+    margin-left: 10px;
     font-size: 23px;
     font-weight: 700;
   }
   
   .daily-item {
-    background-color: #f5f5f5;
+    background-color: #82CD47;
     border-radius: 15px;
     height: 40px;
     margin: 5px;
@@ -35,7 +36,8 @@
   }
   
   .min-max {
-    color: #757575;
+    font-weight: 500;
+    color: #FAFF00;
   }
   
   .daily-details-grid {
