@@ -4,6 +4,10 @@ import CurrentWeather from './components/currentWeather/currentWeather';
 import Search from './components/search/search';
 import { WEATHER_API_URL, WEATHER_API_KEY } from './components/api';
 import WeatherForecast from './components/forecasts/weatherForecast';
+import axios from 'axios';
+
+
+//Using with axios request
 
 function App() {
   //initial value is null
@@ -15,17 +19,29 @@ function App() {
 
    //fetching the current weather
    //here &units=metric is used for showing the temperature in celcius
-   const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
+  //  const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
+  
+  //with axios request
+  const currentWeatherFetch = axios.get(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
 
    //fetching the weather forecast
    //here &units=metric is used for showing the temperature in celcius
-   const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
+  //  const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
+
+  //with axios request
+  const forecastFetch = axios.get(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
 
     Promise.all([currentWeatherFetch, forecastFetch])
     .then(async(response)=>{
       //calling the json from api of index 0 for weather and 1 for forecast
-      const WeatherResponse =  await response[0].json();
-      const ForecastResponse =  await response[1].json();
+      
+      // const WeatherResponse =  await response[0].json();
+      // const ForecastResponse =  await response[1].json();
+
+      //with axios
+      const WeatherResponse =  response[0].data;
+      const ForecastResponse =  response[1].data;
+
 
       // these two set get the data of weather and response
       //displaying the city and country code
@@ -36,8 +52,8 @@ function App() {
     })
     .catch((err)=> console.log(err));
   }
-  console.log(currentWeather);
-  console.log(forecast);
+  // console.log(currentWeather);
+  // console.log(forecast);
   return (
     <div className="container">
      <Search onSearchChange={handleOnSearchChange}/>
